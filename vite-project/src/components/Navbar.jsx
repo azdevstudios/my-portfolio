@@ -41,7 +41,7 @@ function SocialLinks() {
       name: "Instagram",
       url: profile.instagram,
       icon: (
-        <span className="flex h-[21px] w-[21px] items-center justify-center rounded-[6px] bg-[radial-gradient(circle_at_30%_100%,#feda75_0%,#fa7e1e_30%,#d62976_55%,#962fbf_75%,#4f5bd5_100%)]">
+        <span className="flex h-5.25 w-5.25 items-center justify-center rounded-md bg-[radial-gradient(circle_at_30%_100%,#feda75_0%,#fa7e1e_30%,#d62976_55%,#962fbf_75%,#4f5bd5_100%)]">
           <FaInstagram
             size={16}
             color="white"
@@ -109,7 +109,7 @@ export default function Navbar() {
     >
       <nav
         aria-label="Main navigation"
-        className="mx-auto flex h-20 max-w-[1228px] items-center justify-between gap-2 px-5 sm:px-6"
+        className="mx-auto flex h-20 max-w-307 items-center justify-between gap-2 px-5 sm:px-6"
       >
         {/* Logo */}
         <Link

@@ -72,7 +72,7 @@ function DeveloperPanel() {
           {toolkit.map(({ name, Icon, color }) => (
             <li
               key={name}
-              className="flex min-h-[85px] flex-col items-center justify-center gap-2.5 rounded-[10px] border border-[var(--line)] bg-[var(--page-bg)]"
+              className="flex min-h-21.25 flex-col items-center justify-center gap-2.5 rounded-[10px] border border-(--line) bg-(--page-bg)"
             >
               <Icon
                 size={25}
@@ -80,7 +80,7 @@ function DeveloperPanel() {
                 aria-hidden="true"
               />
 
-              <span className="text-[10px] text-[var(--muted)]">
+              <span className="text-[10px] text-(--muted)">
                 {name}
               </span>
             </li>
