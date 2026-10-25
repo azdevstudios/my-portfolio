@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #0a0a0a;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.dark body {
+  background: #0a0a0a;
+  color: #fafafa;
+}
+
+::selection {
+  background: #2563eb;
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 5px;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  background: #2563eb;
+  color: #fff;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (min-width: 768px) {
+  section:first-child {
+    background-image: radial-gradient(
+      ellipse at 90% 10%,
+      rgb(37 99 235 / 0.045),
+      transparent 60%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* Contact form: single focus border */
+.portfolio-page input:focus,
+.portfolio-page input:focus-visible,
+.portfolio-page textarea:focus,
+.portfolio-page textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: var(--accent, #2563eb) !important;
+}
