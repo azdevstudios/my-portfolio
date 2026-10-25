@@ -13,7 +13,7 @@ const projects = [
       "Sign-in and sign-up pages",
     ],
     technologies: [],
-    image: "public/project.png",
+    image: "/project.png",
     demo: "https://blogify-rose-kappa.vercel.app/blogs",
     source: "",
   },
