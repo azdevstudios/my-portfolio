@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <div className="hero-stage" aria-label="Frontend and backend development toolkit">
         <div className="stage-halo" aria-hidden="true"/>
-        <div className="identity-card"><div className="identity-top"><span className="identity-mark"><Code2 size={22}/></span><span>DESIGNED TO CONNECT</span><span className="status-dot"/></div><div className="identity-monogram">az<span>.</span></div><h2>Ali Zain</h2><p>Full-stack developer.<br/>Detail-oriented by design.</p><div className="identity-divider"/><div className="identity-stack">{[["React",FaReact],["Next.js",SiNextdotjs],["Node.js",FaNodeJs],["MongoDB",SiMongodb]].map(([name,Icon])=><span key={name}><Icon aria-hidden="true"/>{name}</span>)}</div></div>
+        <div className="identity-card"><div className="identity-top"><span className="identity-mark"><Code2 size={22}/></span><span>DESIGNED TO CONNECT</span><span className="status-dot"/></div><div className="identity-monogram">AZ<span>.</span></div><h2>Ali Zain</h2><p>Full-stack developer.<br/>Detail-oriented by design.</p><div className="identity-divider"/><div className="identity-stack">{[["React",FaReact],["Next.js",SiNextdotjs],["Node.js",FaNodeJs],["MongoDB",SiMongodb]].map(([name,Icon])=><span key={name}><Icon aria-hidden="true"/>{name}</span>)}</div></div>
         <div className="floating-note"><span className="note-icon"><Layers size={19}/></span><span>From interface<br/><strong>to infrastructure.</strong></span></div>
         <div className="stage-caption"><span/> Code with intention. Build with care.</div>
       </div>

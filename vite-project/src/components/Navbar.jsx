@@ -49,7 +49,7 @@ export default function Navbar() {
   return <>
     <header className="glass-header">
       <nav className="glass-nav" aria-label="Main navigation">
-        <Link to="/" className="brand" aria-label="Ali Zain home">az<span>.</span></Link>
+        <Link to="/" className="brand" aria-label="Ali Zain home">AZ<span>.</span></Link>
         <div className="desktop-links">{links.map(link => <NavLink key={link.path} to={link.path} end={link.path === "/"}>{link.name}</NavLink>)}</div>
         <div className="nav-controls">
           <button className="icon-button" onClick={toggleTheme} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}>{darkMode ? <Sun size={18}/> : <Moon size={18}/>}</button>
@@ -61,7 +61,7 @@ export default function Navbar() {
     {open && <div className="drawer-layer">
       <div className="drawer-backdrop" onClick={close} aria-hidden="true"/>
       <aside ref={drawer} id="mobile-navigation" className="glass-drawer" role="dialog" aria-modal="true" aria-label="Navigation">
-        <div className="drawer-top"><span className="brand">az<span>.</span></span><button className="icon-button" onClick={close} aria-label="Close navigation"><X size={23}/></button></div>
+        <div className="drawer-top"><span className="brand">AZ<span>.</span></span><button className="icon-button" onClick={close} aria-label="Close navigation"><X size={23}/></button></div>
         <p className="drawer-caption">A little about me. A look at my work.</p>
         <nav aria-label="Mobile navigation">{links.map((link,index) => <Link onClick={close} key={link.path} to={link.path} aria-current={pathname === link.path ? "page" : undefined}><span><small>0{index + 1}</small>{link.name}</span><ArrowUpRight size={22}/></Link>)}</nav>
         <div className="drawer-bottom"><p>Built with care.<br/>Based in Faisalabad, Pakistan.</p><div className="drawer-socials">{[["GitHub",profile.github,Github],["LinkedIn",profile.linkedin,Linkedin],["Instagram",profile.instagram,Instagram]].filter(([,url])=>url).map(([name,url,Icon])=><a key={name} href={url} target="_blank" rel="noreferrer" className="icon-button" aria-label={name}><Icon size={19}/></a>)}</div></div>

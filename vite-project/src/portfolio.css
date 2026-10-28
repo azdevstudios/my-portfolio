@@ -770,3 +770,16 @@ footer,.dark footer {background:var(--site-bg);border-color:rgb(127 127 127 / 14
 .hero-stage { padding-bottom:120px; }
 .floating-note { bottom:30px; }
 @media(max-width:767px) { .hero-stage { padding-bottom:120px; } .floating-note { bottom:30px; } }
+
+/* Compact mobile navigation with room for the page behind it. */
+@media (max-width:767px) {
+  .glass-drawer {
+    width:min(300px,calc(100% - 64px));
+    padding:22px;
+    padding-bottom:max(22px,env(safe-area-inset-bottom));
+    border-radius:26px;
+  }
+  .glass-drawer nav a { font-size:25px; padding:18px 10px; }
+  .glass-drawer nav a span { gap:14px; }
+  .drawer-caption { line-height:1.7; }
+}
