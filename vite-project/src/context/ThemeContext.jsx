@@ -20,6 +20,7 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
     document.documentElement.style.colorScheme = darkMode ? "dark" : "light";
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", darkMode ? "#101014" : "#f5f5f7");
 
     try {
       localStorage.setItem("az-theme", darkMode ? "dark" : "light");

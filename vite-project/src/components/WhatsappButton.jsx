@@ -6,9 +6,7 @@ import { FaWhatsapp } from "react-icons/fa";
 export default function WhatsappButton() {
   const reduceMotion = useReducedMotion();
 
-  // Replace with your WhatsApp number (country code + number)
-  // Example format: 923001234567
-const phoneNumber = profile.whatsapp.replace(/\D/g, "");
+  const phoneNumber = String(profile.whatsapp || "").replace(/\D/g, "");
 
   const message =
     "Hi Ali Zain! I came across your portfolio and would like to discuss a project.";
@@ -18,7 +16,7 @@ const phoneNumber = profile.whatsapp.replace(/\D/g, "");
   )}`;
 
   // Avoid opening an invalid WhatsApp link before configuration
-  if (phoneNumber === "YOUR_WHATSAPP_NUMBER") {
+  if (!phoneNumber) {
     return null;
   }
 
@@ -35,7 +33,7 @@ const phoneNumber = profile.whatsapp.replace(/\D/g, "");
         delay: reduceMotion ? 0 : 2.2,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8"
+      className="whatsapp-widget group fixed bottom-6 right-6 z-40 sm:bottom-8 sm:right-8"
     >
       {/* Hover Tooltip */}
       <span
@@ -50,9 +48,9 @@ const phoneNumber = profile.whatsapp.replace(/\D/g, "");
         rel="noopener noreferrer"
         aria-label="Chat with Ali Zain on WhatsApp"
         title="Chat on WhatsApp"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-1 hover:bg-[#20bd5a] hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green-500"
+        className="whatsapp-glass"
       >
-        <FaWhatsapp size={29} />
+        <FaWhatsapp size={26} aria-hidden="true" />
       </a>
     </motion.div>
   );

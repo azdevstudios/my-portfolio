@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, MessageCircle, Check, ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import ScrollReveal from "../components/ScrollReveal";
 
 import { profile } from "../data/profile";
 import "../portfolio.css";
@@ -118,7 +119,7 @@ export default function Contact() {
   return (
     <div className="portfolio-page min-h-screen">
       <div className="pf-container">
-        <section className="pf-about-header">
+        <ScrollReveal><section className="pf-about-header">
           <p className="pf-eyebrow">Contact / Let’s connect</p>
 
           <h1 className="pf-heading pf-about-title">
@@ -131,14 +132,15 @@ export default function Contact() {
             Have a website or application in mind? Tell me what
             you’re planning and where you need help.
           </p>
-        </section>
+        </section></ScrollReveal>
 
         <section
           aria-label="Contact details and enquiry form"
-          className="grid gap-12 border-t border-(--line) pb-20 pt-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"
+          className="contact-layout"
         >
           {/* Contact information */}
-          <aside>
+          <aside className="contact-aside">
+            <span className="contact-symbol"><MessageCircle size={27} aria-hidden="true"/></span>
             <h2 className="pf-heading text-3xl">
               Let’s build something useful.
             </h2>
@@ -181,13 +183,21 @@ export default function Contact() {
               Prefer a direct message? You can skip the form
               and contact me on WhatsApp.
             </p>
+            <div className="contact-next">
+              <p className="pf-eyebrow">A SIMPLE START</p>
+              <ol>
+                <li><span>01</span><div><strong>Share your idea</strong><p>A quick brief is all we need to begin.</p></div></li>
+                <li><span>02</span><div><strong>Talk through the details</strong><p>Goals, features and the direction you have in mind.</p></div></li>
+                <li><span>03</span><div><strong>Find the next step</strong><p>Agree on what your project needs.</p></div></li>
+              </ol>
+            </div>
           </aside>
 
           {/* Enquiry form */}
           <form
             onSubmit={handleSubmit}
             noValidate
-            className="rounded-2xl border border-(--line) bg-(--panel-bg) p-5 sm:p-8"
+            className="contact-form"
           >
             <h2 className="pf-heading text-2xl">
               Tell me about your project.
@@ -197,6 +207,10 @@ export default function Contact() {
               All fields are required. This opens your enquiry
               in WhatsApp, where you can review it and press Send.
             </p>
+            <fieldset className="enquiry-types">
+              <legend>I’m thinking about…</legend>
+              <div>{["A website", "A web application", "Something else"].map(type => <button key={type} type="button" aria-pressed={form.subject === type} onClick={() => {setForm(current => ({...current, subject: type})); setErrors(current => ({...current, subject: ""}));}}>{form.subject === type && <Check size={13} aria-hidden="true"/>}{type}</button>)}</div>
+            </fieldset>
 
             <div className="grid gap-6 sm:grid-cols-2">
               {fields.map((field) => (
@@ -286,8 +300,9 @@ export default function Contact() {
 
             <button type="submit" className="pf-button mt-7">
               Continue in WhatsApp
-              <ArrowUpRight size={17} aria-hidden="true" />
+              <ArrowRight size={17} aria-hidden="true" />
             </button>
+            <p className="form-footnote">Your message stays with you until you send it in WhatsApp.</p>
           </form>
         </section>
       </div>

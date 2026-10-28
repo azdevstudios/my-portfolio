@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code2, Layers, Database, Pause, Play } from "lucide-react";
+import ScrollReveal from "../components/ScrollReveal";
 
 import {
   FaHtml5,
@@ -82,11 +84,25 @@ const skills = [
   },
 ];
 
+const skillNotes = {
+  HTML: "Semantic structure and accessible page foundations.",
+  CSS: "Responsive layouts, visual details and fluid interactions.",
+  JavaScript: "Interactive experiences and application logic.",
+  React: "Reusable components and state-driven interfaces.",
+  "Next.js": "React applications with routing and rendering tools.",
+  "Node.js": "Server-side JavaScript and application services.",
+  Express: "API routes and backend request handling.",
+  MongoDB: "Document-based data storage for web applications.",
+  "Tailwind CSS": "Consistent interfaces with utility-first styling.",
+};
+
 export default function About() {
+  const [selected, setSelected] = useState("React");
+  const [paused, setPaused] = useState(false);
   return (
     <div className="portfolio-page">
       <div className="pf-container">
-        <section className="pf-about-header">
+        <ScrollReveal><section className="pf-about-header">
           <p className="pf-eyebrow">About / Ali Zain</p>
 
           <h1 className="pf-heading pf-about-title">
@@ -94,7 +110,7 @@ export default function About() {
             <br />
             <span className="pf-accent">Developer by craft.</span>
           </h1>
-        </section>
+        </section></ScrollReveal>
 
         <section
           className="pf-bio"
@@ -124,15 +140,15 @@ export default function About() {
             <p>
               I enjoy working across the application—from shaping a
               responsive interface to connecting APIs and managing
-              data. My projects include student record management and
-              blog management applications.
+              data. My work includes Blogify, a blogging platform for
+              discovering stories and exploring ideas.
             </p>
 
             <p>
               I care about making interfaces easy to understand and
-              useful across screen sizes. I’m continuing to improve
-              how I approach design, application structure and the
-              details that make a website easier to use.
+              useful across screen sizes. I bring that same attention
+              to application structure, readable code and the small
+              details that make an experience feel complete.
             </p>
 
             <Link
@@ -164,7 +180,7 @@ export default function About() {
             and database functionality.
           </p>
 
-          <div className="pf-orbit">
+          <div className={`pf-orbit ${paused ? "is-paused" : ""}`}>
             <div className="pf-ring pf-ring-1" aria-hidden="true" />
             <div className="pf-ring pf-ring-2" aria-hidden="true" />
             <div className="pf-ring pf-ring-3" aria-hidden="true" />
@@ -173,13 +189,17 @@ export default function About() {
               AZ.
             </div>
 
-            {skills.map(({ name, Icon, color, x, y }) => (
-              <div
+            {skills.map(({ name, Icon, color, x, y }, index) => (
+              <button
+                type="button"
+                onClick={() => setSelected(name)}
+                aria-pressed={selected === name}
                 key={name}
                 className="pf-skill"
                 style={{
                   "--x": x,
                   "--y": y,
+                  "--delay": `${index * -0.7}s`,
                 }}
               >
                 <Icon
@@ -187,10 +207,20 @@ export default function About() {
                   style={{ color: color || "currentColor" }}
                 />
                 <span>{name}</span>
-              </div>
+              </button>
             ))}
           </div>
+          <div className="skill-detail" aria-live="polite"><strong>{selected}</strong><p>{skillNotes[selected]}</p></div>
+          <button type="button" className="motion-toggle" onClick={() => setPaused(!paused)} aria-pressed={paused}>
+            {paused ? <Play size={14}/> : <Pause size={14}/>} {paused ? "Resume animation" : "Pause animation"}
+          </button>
         </section>
+
+        <ScrollReveal><section className="approach-grid" aria-label="My development approach">
+          {[[Code2, "Interface", "Clear, responsive layouts with the details in the right places."], [Layers, "Application", "Reusable components and connected flows that work together."], [Database, "Foundation", "APIs and data structures that support the experience."]].map(([Icon, title, copy]) => (
+            <article key={title}><Icon size={23} aria-hidden="true"/><h3>{title}</h3><p>{copy}</p></article>
+          ))}
+        </section></ScrollReveal>
 
         <section className="pf-about-cta">
           <h2 className="pf-heading">

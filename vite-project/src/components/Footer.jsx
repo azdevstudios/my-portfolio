@@ -1,21 +1,12 @@
-import { Link } from "react-router-dom";
-
+import { Link, NavLink } from "react-router-dom";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { profile } from "../data/profile";
+const socials = [{ name: "GitHub", href: profile.github, Icon: FaGithub },{ name: "LinkedIn", href: profile.linkedin, Icon: FaLinkedin },{ name: "Instagram", href: profile.instagram, Icon: FaInstagram }];
 export default function Footer() {
-  return (
-    <footer className="border-t border-[#deded9] bg-[#f5f5f2] dark:border-[#363636] dark:bg-[#1b1b1b]">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-[#64646d] sm:flex-row lg:px-10 dark:text-[#aaaab2]">
-        <p>© {new Date().getFullYear()} All rights reserved.</p>
-
-        <p>
-          Built by{" "}
-          <Link
-            to="/contact"
-            className="font-semibold text-[#18181b] transition-colors hover:text-blue-600 dark:text-[#f5f5f2] dark:hover:text-[#75a7ff]"
-          >
-            AZ.
-          </Link>
-        </p>
-      </div>
-    </footer>
-  );
+  return <footer className="site-footer"><div className="footer-inner">
+    <Link to="/" className="brand" aria-label="Ali Zain home">az<span>.</span></Link>
+    <p className="footer-credit">© {new Date().getFullYear()} Ali Zain.<span> Crafted with care.</span></p>
+    <nav className="footer-links" aria-label="Footer navigation"><NavLink to="/about">About</NavLink><NavLink to="/projects">Work</NavLink><NavLink to="/contact">Contact</NavLink></nav>
+    <div className="footer-socials" aria-label="Social profiles">{socials.filter(({ href }) => href).map(({ name, href, Icon }) => <a key={name} href={href} target="_blank" rel="noopener noreferrer" className="icon-button" aria-label={`${name} (opens in a new tab)`}><Icon size={16} aria-hidden="true" /></a>)}</div>
+  </div></footer>;
 }

@@ -1,163 +1,33 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Layers3 } from "lucide-react";
+import { ArrowUpRight, Layers3, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { projects } from "../data/projects";
+import ScrollReveal from "./ScrollReveal";
 import "../portfolio.css";
+
 export function ProjectGrid({ detailed = false }) {
-  const newLocal = "mt-3 text-xs text-(--muted)";
-  return (
-    <div className="grid gap-7 md:grid-cols-2">
-      {projects.map((project) => (
-        <article
-          key={project.id}
-          className="group overflow-hidden rounded-2xl border border-(--line) bg-(--panel-bg)"
-        >
-          {/* Project preview */}
-          <div className="relative aspect-16/10 overflow-hidden border-b border-(--line) bg-(--page-bg)">
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={`${project.title} screenshot`}
-                loading="lazy"
-                width={1280}
-                height={800}
-                className="h-full w-full object-contain transition-transform duration-500 motion-safe:group-hover:scale-[1.025]"
-              />
-            ) : (
-              <div className="flex h-full flex-col justify-between p-6 sm:p-8">
-                <div className="flex items-center justify-between text-(--muted)">
-                  <span className="text-xs tracking-[0.15em]">
-                    {project.number} / PROJECT
-                  </span>
-
-                  <Layers3 size={22} aria-hidden="true" />
-                </div>
-
-                <div>
-                  <p className="pf-heading text-3xl sm:text-4xl">
-                    {project.title}
-                  </p>
-
-                  <p className={newLocal}>
-                    Project overview · Screenshot not added
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Project details */}
-          <div className="p-6 sm:p-8">
-            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-(--accent)">
-              {project.category}
-            </p>
-
-            <h3 className="pf-heading mt-4 text-3xl">
-              {project.title}
-            </h3>
-
-            <p className="mt-4 text-sm leading-7 text-(--muted)">
-              {project.description}
-            </p>
-
-            {detailed && project.features?.length > 0 && (
-              <div className="mt-6">
-                <h4 className="text-xs font-semibold uppercase tracking-wider">
-                  Key features
-                </h4>
-
-                <ul className="mt-3 space-y-2">
-                  {project.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex gap-3 text-sm leading-6 text-(--muted)"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-(--accent)"
-                      />
-
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <ul
-              aria-label="Technologies used"
-              className="mt-6 flex flex-wrap gap-2"
-            >
-              {project.technologies.map((technology) => (
-                <li
-                  key={technology}
-                  className="rounded-md border border-(--line) px-3 py-1.5 text-[11px] text-(--muted)"
-                >
-                  {technology}
-                </li>
-              ))}
-            </ul>
-
-            {(project.demo || project.source) && (
-              <div className="mt-7 flex flex-wrap gap-5 border-t border-(--line) pt-5">
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Open ${project.title} live demo`}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-(--accent) hover:underline"
-                  >
-                    Live demo
-                    <ArrowUpRight size={16} aria-hidden="true" />
-                  </a>
-                )}
-
-                {project.source && (
-                  <a
-                    href={project.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${project.title} source code`}
-                    className="inline-flex items-center gap-2 text-sm font-medium hover:text-(--accent)"
-                  >
-                    <FaGithub size={16} aria-hidden="true" />
-                    Source code
-                  </a>
-                )}
-              </div>
-            )}
-          </div>
-        </article>
-      ))}
-    </div>
-  );
-}
-
-export default function SelectedWork() {
-  return (
-    <section
-      id="selected-work"
-      className="portfolio-page border-y border-(--line) py-16 sm:py-20"
-    >
-      <div className="pf-container">
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <p className="pf-eyebrow">Selected projects</p>
-
-            <h2 className="pf-heading mt-5 text-4xl sm:text-5xl">
-              Ideas into applications<span className="pf-accent">.</span>
-            </h2>
-          </div>
-
-          <Link to="/projects" className="pf-text-link">
-            All projects
-            <ArrowUpRight size={17} aria-hidden="true" />
-          </Link>
+  return <div className={`project-grid ${projects.length === 1 ? "project-grid-single" : ""}`}>
+    {projects.map((project, index) => <ScrollReveal key={project.id} delay={index * 0.08}>
+      <article className="project-card">
+        <div className="project-visual">
+          <div className="project-window-bar" aria-hidden="true"><span/><span/><span/><p>{project.title.toLowerCase()} · web experience</p><ExternalLink size={13}/></div>
+          {project.image ? <img src={project.image} alt={`${project.title} — blogging platform interface`} loading="lazy" width={1280} height={800}/> : <div className="project-placeholder"><Layers3 size={40}/><span>{project.title}</span></div>}
+          <span className="project-index">PROJECT {project.number}</span>
         </div>
-
-        <ProjectGrid />
-      </div>
-    </section>
-  );
+        <div className="project-content">
+          <p className="pf-eyebrow">{project.category}</p><h2 className="pf-heading">{project.title}</h2>
+          <p className="project-description">{project.description}</p>
+          {detailed && project.features?.length > 0 && <div className="project-features"><h3>Inside the experience</h3><ul>{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul></div>}
+          {project.technologies.length > 0 && <ul className="project-tags" aria-label="Technologies">{project.technologies.map(tech => <li key={tech}>{tech}</li>)}</ul>}
+          <div className="project-actions">
+            {project.demo && <a className="pf-button" href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`Explore ${project.title} (opens in a new tab)`}>Explore live site <ArrowUpRight size={17}/></a>}
+            {project.source && <a className="pf-text-link" href={project.source} target="_blank" rel="noopener noreferrer"><FaGithub size={17}/> Source code</a>}
+          </div>
+        </div>
+      </article>
+    </ScrollReveal>)}
+  </div>;
+}
+export default function SelectedWork() {
+  return <section className="portfolio-page"><div className="pf-container"><h2 className="pf-heading pf-section-title">Selected work.</h2><ProjectGrid/><Link to="/projects" className="pf-text-link">All projects <ArrowUpRight size={17}/></Link></div></section>;
 }

@@ -1,51 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectGrid } from "../components/SelectedWork";
+import ScrollReveal from "../components/ScrollReveal";
 import "../portfolio.css";
-
 export default function Projects() {
-  return (
-    <div className="portfolio-page min-h-screen">
-      <div className="pf-container">
-        <section className="pf-about-header">
-          <p className="pf-eyebrow">Portfolio / Projects</p>
-
-          <h1 className="pf-heading pf-about-title">
-            Built with purpose.
-            <br />
-            <span className="pf-accent">Made to work.</span>
-          </h1>
-
-          <p className="pf-description">
-            A selection of my web applications, with the features
-            they support and the technologies behind them.
-          </p>
-        </section>
-
-        <section
-          aria-labelledby="projects-heading"
-          className="border-t border-(--line) pb-20 pt-10"
-        >
-          <h2 id="projects-heading" className="sr-only">
-            Project collection
-          </h2>
-
-          <ProjectGrid detailed />
-        </section>
-
-        <section className="pf-about-cta">
-          <h2 className="pf-heading">
-            Your idea could
-            <br />
-            be next.
-          </h2>
-
-          <Link to="/contact" className="pf-button">
-            Let’s talk
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </Link>
-        </section>
-      </div>
-    </div>
-  );
+  return <div className="portfolio-page page-work"><div className="pf-container">
+    <ScrollReveal><section className="pf-about-header"><p className="pf-eyebrow">SELECTED WORK</p><h1 className="pf-heading pf-about-title">Ideas, brought<br/><span className="pf-accent">to life.</span></h1><p className="pf-description">A closer look at the things I build. Real projects, considered interfaces, and the thinking behind them.</p></section></ScrollReveal>
+    <section className="work-collection" aria-label="Project collection"><ProjectGrid detailed/></section>
+    <ScrollReveal><section className="pf-about-cta"><div><p className="pf-eyebrow">WHAT COMES NEXT</p><h2 className="pf-heading">Your idea.<br/>Our next conversation.</h2></div><Link to="/contact" className="pf-button">Let’s build something <ArrowUpRight size={18}/></Link></section></ScrollReveal>
+  </div></div>;
 }
