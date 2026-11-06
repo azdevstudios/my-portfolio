@@ -3,10 +3,11 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Sun, Moon, Menu, X, ArrowUpRight } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import { FaGithub as Github, FaLinkedin as Linkedin, FaInstagram as Instagram } from "react-icons/fa";
-import { profile } from "../data/profile";
+import usePortfolio from "../hooks/usePortfolio";
 
 const links = [{name:"Home",path:"/"},{name:"About",path:"/about"},{name:"Projects",path:"/projects"},{name:"Contact",path:"/contact"}];
 export default function Navbar() {
+  const { profile } = usePortfolio();
   const { darkMode, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const trigger = useRef(null);
@@ -64,7 +65,7 @@ export default function Navbar() {
         <div className="drawer-top"><span className="brand">AZ<span>.</span></span><button className="icon-button" onClick={close} aria-label="Close navigation"><X size={23}/></button></div>
         <p className="drawer-caption">A little about me. A look at my work.</p>
         <nav aria-label="Mobile navigation">{links.map((link,index) => <Link onClick={close} key={link.path} to={link.path} aria-current={pathname === link.path ? "page" : undefined}><span><small>0{index + 1}</small>{link.name}</span><ArrowUpRight size={22}/></Link>)}</nav>
-        <div className="drawer-bottom"><p>Built with care.<br/>Based in Faisalabad, Pakistan.</p><div className="drawer-socials">{[["GitHub",profile.github,Github],["LinkedIn",profile.linkedin,Linkedin],["Instagram",profile.instagram,Instagram]].filter(([,url])=>url).map(([name,url,Icon])=><a key={name} href={url} target="_blank" rel="noreferrer" className="icon-button" aria-label={name}><Icon size={19}/></a>)}</div></div>
+        <div className="drawer-bottom"><p>Built with care.<br/>Based in {profile.location}.</p><div className="drawer-socials">{[["GitHub",profile.github,Github],["LinkedIn",profile.linkedin,Linkedin],["Instagram",profile.instagram,Instagram]].filter(([,url])=>url).map(([name,url,Icon])=><a key={name} href={url} target="_blank" rel="noreferrer" className="icon-button" aria-label={name}><Icon size={19}/></a>)}</div></div>
       </aside>
     </div>}
   </>;

@@ -19,6 +19,7 @@ import {
 } from "react-icons/si";
 
 import "../portfolio.css";
+import usePortfolio from "../hooks/usePortfolio";
 
 const skills = [
   {
@@ -97,13 +98,14 @@ const skillNotes = {
 };
 
 export default function About() {
+  const { profile } = usePortfolio();
   const [selected, setSelected] = useState("React");
   const [paused, setPaused] = useState(false);
   return (
     <div className="portfolio-page">
       <div className="pf-container">
         <ScrollReveal><section className="pf-about-header">
-          <p className="pf-eyebrow">About / Ali Zain</p>
+          <p className="pf-eyebrow">About / {profile.name}</p>
 
           <h1 className="pf-heading pf-about-title">
             Curious by nature.
@@ -130,26 +132,7 @@ export default function About() {
           </div>
 
           <div className="pf-bio-copy">
-            <p>
-              I’m <strong>Ali Zain</strong>, a full-stack web developer
-              based in Faisalabad, Pakistan. I build websites and web
-              applications using React, Next.js, Node.js, Express and
-              MongoDB.
-            </p>
-
-            <p>
-              I enjoy working across the application—from shaping a
-              responsive interface to connecting APIs and managing
-              data. My work includes Blogify, a blogging platform for
-              discovering stories and exploring ideas.
-            </p>
-
-            <p>
-              I care about making interfaces easy to understand and
-              useful across screen sizes. I bring that same attention
-              to application structure, readable code and the small
-              details that make an experience feel complete.
-            </p>
+            {profile.biography.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
 
             <Link
               to="/projects"

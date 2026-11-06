@@ -3,7 +3,7 @@ import { ArrowUpRight, MapPin, MessageCircle, Check, ArrowRight } from "lucide-r
 import { FaWhatsapp } from "react-icons/fa";
 import ScrollReveal from "../components/ScrollReveal";
 
-import { profile } from "../data/profile";
+import usePortfolio from "../hooks/usePortfolio";
 import "../portfolio.css";
 
 const initialForm = {
@@ -43,6 +43,7 @@ const inputClass =
   "mt-3 w-full rounded-lg border border-[var(--line)] bg-[var(--page-bg)] px-4 py-3.5 text-sm text-[var(--text)] transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:outline-none focus-visible:outline-none focus:ring-0";
 
 export default function Contact() {
+  const { profile } = usePortfolio();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
 
@@ -157,7 +158,7 @@ export default function Contact() {
                 aria-hidden="true"
               />
 
-              Faisalabad, Pakistan
+              {profile.location}
             </div>
 
             {phone && (

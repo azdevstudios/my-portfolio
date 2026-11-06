@@ -1,7 +1,27 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/projects",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin/:path*",
       "destination": "/index.html"
     }
   ]

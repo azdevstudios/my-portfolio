@@ -1,15 +1,16 @@
-import { profile } from "../data/profile";
+import usePortfolio from "../hooks/usePortfolio";
 
 import { motion, useReducedMotion } from "motion/react";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function WhatsappButton() {
+  const { profile } = usePortfolio();
   const reduceMotion = useReducedMotion();
 
   const phoneNumber = String(profile.whatsapp || "").replace(/\D/g, "");
 
   const message =
-    "Hi Ali Zain! I came across your portfolio and would like to discuss a project.";
+    `Hi ${profile.name}! I came across your portfolio and would like to discuss a project.`;
 
   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message
@@ -46,7 +47,7 @@ export default function WhatsappButton() {
         href={whatsappURL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat with Ali Zain on WhatsApp"
+        aria-label={`Chat with ${profile.name} on WhatsApp`}
         title="Chat on WhatsApp"
         className="whatsapp-glass"
       >
