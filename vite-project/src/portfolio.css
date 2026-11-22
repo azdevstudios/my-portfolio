@@ -677,6 +677,13 @@ footer,.dark footer {background:var(--site-bg);border-color:rgb(127 127 127 / 14
 .project-actions { display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-top:30px; }
 .project-placeholder { display:grid; gap:15px; place-content:center; min-height:220px; }
 .work-collection { padding-bottom:70px; }
+.page-work .project-grid { gap:20px; }
+.page-work .project-visual { padding:24px 20px 50px; }
+.page-work .project-content { padding:26px 24px; }
+.page-work .project-content h2 { font-size:34px; margin:13px 0; }
+.page-work .project-description { line-height:1.75; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:4; overflow:hidden; }
+.page-work .project-actions { margin-top:22px; }
+@media(min-width:1100px) { .page-work .project-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 .pf-about-cta .pf-eyebrow { margin-bottom:20px; }
 /* About interactions */
 .pf-skill { cursor:pointer; }
