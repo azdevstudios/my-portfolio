@@ -257,10 +257,11 @@
 .admin-project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  gap: 16px;
+  align-items: start;
 }
 .admin-project-cover {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 8.5;
   background: var(--page-bg);
   overflow: hidden;
   border-bottom: 1px solid var(--line);
@@ -275,7 +276,7 @@
   transform: scale(1.025);
 }
 .admin-project-details {
-  padding: 22px;
+  padding: 16px;
 }
 .admin-project-category {
   color: var(--accent);
@@ -284,24 +285,28 @@
   text-transform: uppercase;
 }
 .admin-project-details h2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.04em;
-  margin-top: 9px;
+  margin-top: 7px;
   overflow-wrap: anywhere;
 }
 .admin-project-description {
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.9;
-  margin-top: 10px;
+  line-height: 1.7;
+  margin-top: 8px;
   overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 .admin-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 .admin-tags span {
   border: 1px solid var(--line);
@@ -315,8 +320,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding-top: 18px;
-  margin-top: 20px;
+  padding-top: 14px;
+  margin-top: 14px;
   border-top: 1px solid var(--line);
 }
 .admin-project-actions small {
@@ -364,6 +369,11 @@
     border: 1px solid var(--line);
     border-radius: 18px;
     box-shadow: 0 8px 35px rgb(0 0 0 / 0.025);
+  }
+}
+@media (min-width: 1280px) {
+  .admin-project-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 @media (max-width: 639px) {
